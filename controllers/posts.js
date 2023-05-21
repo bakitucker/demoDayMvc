@@ -2,6 +2,8 @@ const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
 const Workout = require("../models/Workout");
+const SavedWorkout = require('../models/SavedWorkout');
+
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -19,6 +21,7 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       const workouts = await Workout.find({ user: req.user.id });
+      console.log(workouts)
       res.render("feed.ejs", { workouts: workouts, user: req.user });
     } catch (err) {
       console.log(err);
@@ -32,6 +35,59 @@ module.exports = {
       console.log(err);
     }
   },
+
+  searchWorkout: async (req, res) => {
+    try {
+      const workoutValue = req.body.workOutValue;
+
+      const { default: fetch } = await import('node-fetch');
+  
+      const response = await fetch(`https://api.api-ninjas.com/v1/exercises?muscle=${workoutValue}`, {
+        method: 'GET',
+        headers: {
+          'X-Api-Key': 'z+kP/dQ1FLHyJ/EwaC6oBg==0NTw6jxccdMQUNgj',
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      const data = await response.json();
+      console.log(data);
+  
+      // Pass the 'data' variable when rendering the 'workouts.ejs' template
+      res.render('workouts.ejs', { data: data });
+    } catch (err) {
+      console.log(`error ${err}`);
+      res.redirect('/errorPage');
+    }
+},
+  
+saveWorkout: async (req, res) => {
+    try {
+      const data = JSON.parse(req.query.data);
+  
+      // Access the relevant properties from the data and save the workout to the database
+      const { muscle, name, difficulty, instructions } = data;
+  
+      // Create a new instance of the workout model with the extracted data
+      const workout = new SavedWorkout({
+        muscle: muscle,
+        name: name,
+        difficulty: difficulty,
+        instructions: instructions
+      });
+  
+      // Save the workout to the database
+      await workout.save();
+  
+      // Redirect to a success page or display a success message
+      res.redirect('/successPage');
+    } catch (err) {
+      console.log(`Error saving workout: ${err}`);
+      res.redirect('/errorPage');
+    }
+  },
+  
+
   
   createPost: async (req, res) => {
     try {

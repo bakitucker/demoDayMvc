@@ -15,10 +15,13 @@
         .then(res => res.json()) // parse response as JSON 
     .then(data => { 
       console.log(data) 
+
+      a = document.getElementById('addWorkout');
+        a.setAttribute("href", `/feed?name=${data[0].name}`);
       document.querySelector('.muscle').innerText = data[0].muscle.toUpperCase()
       document.querySelector('.workoutName').innerText = data[0].name
       document.querySelector('.difficulty').innerText = data[0].difficulty.toUpperCase()
-
+      document.querySelector('#addWorkout').innerText = data[0].name
       document.querySelector('.instructions').innerText = data[0].instructions
  
     }) 

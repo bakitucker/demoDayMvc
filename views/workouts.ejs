@@ -49,37 +49,52 @@
       <div class="quote-box pl-5 pr-5 wow bounceInRight">
         <h2>Workouts<br><span>Check out some workouts!!!!</span> </h2>
       </div>
-      <select class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown workOutValue" name="Muscles">
-        <option value="abdominals">Abdominals</option>
-        <option value="abductors">Abductors</option>
-        <option value="adductors">Adductors</option>
-        <option value="biceps">Biceps</option>
-        <option value="calves">Calves</option>
-        <option value="chest">Chest</option>
-        <option value="forearms">Forearms</option>
-        <option value="glutes">Glutes</option>
-        <option value="hamstrings">Hamstrings</option>
-        <option value="lats">Lats</option>
-        <option value="lower_back">Lower Back</option>
-        <option value="middle_back">Middle Back</option>
-        <option value="neck">Neck</option>
-        <option value="quadriceps">Quadriceps</option>
-        <option value="traps">Traps</option>
-        <option value="triceps">Triceps</option>
-      </select>
- <button class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown searchWorkout">Get Workouts!!</button></div>
+      <form action="/searchWorkout" method="POST">
+        <select class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown workOutValue" name="workOutValue">
+          <option value="abdominals">Abdominals</option>
+          <option value="abductors">Abductors</option>
+          <option value="adductors">Adductors</option>
+          <option value="biceps">Biceps</option>
+          <option value="calves">Calves</option>
+          <option value="chest">Chest</option>
+          <option value="forearms">Forearms</option>
+          <option value="glutes">Glutes</option>
+          <option value="hamstrings">Hamstrings</option>
+          <option value="lats">Lats</option>
+          <option value="lower_back">Lower Back</option>
+          <option value="middle_back">Middle Back</option>
+          <option value="neck">Neck</option>
+          <option value="quadriceps">Quadriceps</option>
+          <option value="traps">Traps</option>
+          <option value="triceps">Triceps</option>
+        </select>
+        <button type="submit" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown ">Search</button>
+      </form>
+      
+
   </div>
 </div>
+
+
+
+
 <div class="container-fluid fh5co-network">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <h4 class="wow bounceInUp muscle">FOR NETWORK</h4>
-        <h2 class="wow bounceInRight workoutName">MEMBERS</h2>
-        <hr />
-        <h5 class="wow bounceInLeft difficulty">NETWORK SUMMER 2017</h5>
-        <p class="wow bounceInDown instructions">The lowdown on Blood Flow Restriction training • FREE CEC/CPD • ​Let's compare ​Raw Vs Cooked • Building Ab, Core &amp; Pelvic strength • Get​ clients short-term wins from long-term goals • So you want to operate multiple clubs? + LOADS MORE</p>
-      </div>
+      <form action="/savedWorkout" method="POST">
+        <% for(let i=0; i <data.length; i++) { %>
+          <div class="col-md-6">
+            <h4 name="muscle" class="wow bounceInUp muscle"><%= data[i].muscle.toUpperCase() %></h4>
+            <h2 name="name" class="wow bounceInRight workoutName"><%= data[i].name %></h2>
+            <hr />
+            <h5 name="difficulty" class="wow bounceInLeft difficulty"><%= data[i].difficulty.toUpperCase() %></h5>
+            <p name="instructions" class="wow bounceInDown instructions"><%= data[i].instructions %></p>
+            <input type="submit" value="Save Workout">
+          </div>
+        <% } %>
+      </form>
+      
+          </div>
       <div class="col-md-6">
         <figure class="wow bounceInDown"> <img src="images/about-img.jpg" alt="gym" class="img-fluid" /> </figure>
       </div>
