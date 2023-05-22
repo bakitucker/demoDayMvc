@@ -51,41 +51,49 @@ module.exports = {
       });
   
       const data = await response.json();
-      console.log(data);
+   
   
       // Pass the 'data' variable when rendering the 'workouts.ejs' template
-      res.render('workouts.ejs', { data: data });
+      res.render('result.ejs', { data: data });
     } catch (err) {
       console.log(`error ${err}`);
       res.redirect('/errorPage');
     }
 },
+
+
+
+
+
+
+
   
 saveWorkout: async (req, res) => {
-    try {
-      const data = JSON.parse(req.query.data);
-  
-      // Access the relevant properties from the data and save the workout to the database
-      const { muscle, name, difficulty, instructions } = data;
-  
-      // Create a new instance of the workout model with the extracted data
-      const workout = new SavedWorkout({
-        muscle: muscle,
-        name: name,
-        difficulty: difficulty,
-        instructions: instructions
-      });
-  
-      // Save the workout to the database
-      await workout.save();
-  
-      // Redirect to a success page or display a success message
-      res.redirect('/successPage');
-    } catch (err) {
-      console.log(`Error saving workout: ${err}`);
-      res.redirect('/errorPage');
-    }
-  },
+  try {
+    console.log(req.body)
+    
+    // Access the relevant properties from the request body and save the workout to the database
+    const { muscle, name, difficulty, instructions } = req.body
+    console.log(req.body, muscle, name, difficulty, instructions)
+    // Create a new instance of the SavedWorkout model with the extracted data
+    const workout = new SavedWorkout({
+      muscle: muscle,
+      name: name,
+      difficulty: difficulty,
+      instructions: instructions,
+    });
+
+    // Save the workout to the database
+    await workout.save();
+console.log("workout Saved!!!")
+    // Redirect to a success page or display a success message
+    res.redirect("/workouts");
+  } catch (err) {
+    console.log(`Error saving workout: ${err}`);
+    res.redirect("/errorPage");
+  }
+},
+
   
 
   

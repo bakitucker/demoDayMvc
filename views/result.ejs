@@ -49,27 +49,6 @@
       <div class="quote-box pl-5 pr-5 wow bounceInRight">
         <h2>Workouts<br><span>Check out some workouts!!!!</span> </h2>
       </div>
-      <form action="/searchWorkout" method="POST">
-        <select class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown workOutValue" name="workOutValue">
-          <option value="abdominals">Abdominals</option>
-          <option value="abductors">Abductors</option>
-          <option value="adductors">Adductors</option>
-          <option value="biceps">Biceps</option>
-          <option value="calves">Calves</option>
-          <option value="chest">Chest</option>
-          <option value="forearms">Forearms</option>
-          <option value="glutes">Glutes</option>
-          <option value="hamstrings">Hamstrings</option>
-          <option value="lats">Lats</option>
-          <option value="lower_back">Lower Back</option>
-          <option value="middle_back">Middle Back</option>
-          <option value="neck">Neck</option>
-          <option value="quadriceps">Quadriceps</option>
-          <option value="traps">Traps</option>
-          <option value="triceps">Triceps</option>
-        </select>
-        <button type="submit" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown ">Search</button>
-      </form>
       
 
   </div>
@@ -84,10 +63,28 @@
     <div class="row">
 
   
-  
+      
+        <% for(let i=0; i <data.length; i++) { %>
+          <form action="/savedWorkout" method="POST">
+          <div class="col-md-6">
+            <h4 class="wow bounceInUp muscle"><%= data[i].muscle.toUpperCase() %></h4>
+            <h2 class="wow bounceInRight workoutName"><%= data[i].name %></h2>
+            <hr />
+            <h5 class="wow bounceInLeft difficulty"><%= data[i].difficulty.toUpperCase() %></h5>
+            <p class="wow bounceInDown instructions"><%= data[i].instructions %></p>
+            <input type="hidden" name="muscle" value="<%= data[i].muscle %>" />
+            <input type="hidden" name="name" value="<%= data[i].name %>" />
+            <input type="hidden" name="difficulty" value="<%= data[i].difficulty %>" />
+            <input type="hidden" name="instructions" value="<%= data[i].instructions %>" />
+            <button type="submit" name="workoutIndex" value="<%= i %>">Save Workout</button>
+          </div>
+        </form>
+        <% } %>
+     
+      
           </div>
       <div class="col-md-6">
-      
+        
       </div>
     </div>
   </div>
