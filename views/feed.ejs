@@ -109,7 +109,7 @@
               <p>Reps:<span><%= workouts[i].reps %></span></p>
               <p>Sets:<span><%= workouts[i].sets %></span></p>
               <p>Total Amount of Weight Used:<span><%= workouts[i].weight * workouts[i].reps * workouts[i].sets  %></span><p>
-              <p><span><i class="fa fa-trash" aria-hidden="true"></i></span></p>
+              <p><span><i class="fa fa-trash" aria-hidden="true" data-id="<%= workouts[i]._id %>"></i></span></p>
             </li>
           <% } %>
           </ul>

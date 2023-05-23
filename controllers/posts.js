@@ -3,6 +3,7 @@ const Post = require("../models/Post");
 const Comment = require("../models/Comment");
 const Workout = require("../models/Workout");
 const SavedWorkout = require('../models/SavedWorkout');
+const ObjectId = require("mongodb").ObjectID
 
 
 module.exports = {
@@ -109,6 +110,32 @@ console.log("workout Saved!!!")
     res.redirect("/errorPage");
   }
 },
+
+deleteSavedWorkout: async (req, res) => {
+  try {
+
+    await SavedWorkout.remove({ _id: ObjectId(req.body.id) });
+    console.log("Deleted Saved Workout");
+    res.redirect("/myWorkouts");
+  } catch (err) {
+    res.redirect("/myWorkouts");
+  }
+},
+
+deleteWorkoutLog: async (req, res) => {
+  try {
+
+    await Workout.remove({ _id: ObjectId(req.body.id) });
+    console.log("Deleted Saved WorkoutLog");
+    res.send()
+  } catch (err) {
+    res.send(500, err)
+    console.log(err)
+  }
+},
+
+
+
 
   
 

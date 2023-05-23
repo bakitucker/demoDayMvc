@@ -10,7 +10,10 @@ router.get("/", homeController.getIndex);
 router.get("/profile", ensureAuth, postsController.getProfile);
 router.get("/feed", ensureAuth, postsController.getFeed);
 router.get("/myWorkouts", ensureAuth, postsController.getMyWorkouts);
-// router.get("/result", ensureAuth, postsController.getResult);
+router.post("/deleteSavedWorkout", ensureAuth, postsController.deleteSavedWorkout);
+router.delete("/deleteWorkoutLog", ensureAuth, postsController.deleteWorkoutLog);
+
+
 router.get("/workouts", ensureAuth, postsController.getWorkouts);
 router.post("/searchWorkout", ensureAuth, postsController.searchWorkout);
 router.post('/savedWorkout', ensureAuth, postsController.saveWorkout);

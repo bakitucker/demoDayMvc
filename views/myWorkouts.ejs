@@ -70,17 +70,14 @@
       
           
             
-              <form action="/savedWorkout" method="POST">
+              <form action="/deleteSavedWorkout" method="POST">
               <div class="col-md-6">
                 <h4 class="wow bounceInUp muscle"><%= savedWorkouts[i].muscle.toUpperCase() %></h4>
                 <h2 class="wow bounceInRight workoutName"><%= savedWorkouts[i].name %></h2>
                 <hr />
                 <h5 class="wow bounceInLeft difficulty"><%= savedWorkouts[i].difficulty.toUpperCase() %></h5>
                 <p class="wow bounceInDown instructions"><%= savedWorkouts[i].instructions %></p>
-                <input type="hidden" name="muscle" value="<%= savedWorkouts[i].muscle %>" />
-                <input type="hidden" name="name" value="<%= savedWorkouts[i].name %>" />
-                <input type="hidden" name="difficulty" value="<%= savedWorkouts[i].difficulty %>" />
-                <input type="hidden" name="instructions" value="<%= savedWorkouts[i].instructions %>" />
+                <input type="hidden" name="id" value="<%= savedWorkouts[i]._id %>" />
                 <button type="submit" name="workoutIndex" value="<%= i %>">Delete Workout</button>
               </div>
             </form>
