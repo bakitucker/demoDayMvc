@@ -18,6 +18,21 @@ module.exports = {
       console.log(err);
     }
   },
+  getMyWorkouts: async (req, res) => {
+    try {
+      try {
+        const savedWorkouts = await SavedWorkout.find({ });
+        console.log('data has been found !')
+        console.log(savedWorkouts)
+      
+        res.render("myWorkouts.ejs", { savedWorkouts: savedWorkouts, user: req.user });
+      } catch (err) {
+        console.log(err);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  },
   getFeed: async (req, res) => {
     try {
       const workouts = await Workout.find({ user: req.user.id });
@@ -29,7 +44,7 @@ module.exports = {
   },
   getWorkouts: async (req, res) => {
     try {
-      const workouts = await Workout.find({ user: req.user.id });
+      const workouts = await Workout.find({ email: req.user.email});
       res.render("workouts.ejs", { workouts: workouts, user: req.user });
     } catch (err) {
       console.log(err);
@@ -81,6 +96,7 @@ saveWorkout: async (req, res) => {
       name: name,
       difficulty: difficulty,
       instructions: instructions,
+      email: req.user.email
     });
 
     // Save the workout to the database

@@ -7,7 +7,6 @@
 -->
 <html lang="en">
 <head>
- 
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,7 +16,7 @@
   <link href="css/animate.css" rel="stylesheet">
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/4c83b50b1e.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/4c83b50b1e.js" crossorigin="anonymous"></script> 
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -25,7 +24,7 @@
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container"> 
       <!-- Brand --> 
-      <a class="navbar-brand mr-auto" href="/Profile"><img src="images/logo.png" alt="FoxPro" /></a> 
+      <a class="navbar-brand mr-auto" href="#"><img src="images/logo.png" alt="FoxPro" /></a> 
       
       <!-- Toggler/collapsibe Button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span> </button>
@@ -34,9 +33,10 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"> <a class="nav-link" href="/profile">Home</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#about-us">About</a> </li>
           <li class="nav-item"> <a class="nav-link" href="/workouts">Workouts</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="/myWorkouts">My Workouts</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="/workoutLog">Workout Log</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#contact">Contact</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/feed">Workout Log</a> </li>
         </ul>
         <ul class="navbar-nav ml-5">
           <li class="nav-item"> <a class="nav-link btn btn-danger" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> </li>
@@ -47,83 +47,54 @@
   <div class="container">
     <div class="fh5co-banner-text-box">
       <div class="quote-box pl-5 pr-5 wow bounceInRight">
-        <h2>Workout Log<br><span>Record your workouts!</span> </h2>
-        <form action="/post/createWorkout" method="POST">
-          <div class="thePost">
-            <label for="workOutName">Workout Name:</label>
-            <input type="text" class="post" id="workOutName" name="workOutName" required>
-          </div> 
-          <div class="thePost">
-            <label for="bodyPart">Muscle:</label>
-            <select class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown workOutValue" name="workOutValue" onchange="fetchExerciseOptions()" id="bodyPart" name="bodyPart" required>
-              <option value="">Select a muscle</option>
-              <option value="abdominals">Abdominals</option>
-              <option value="abductors">Abductors</option>
-              <option value="adductors">Adductors</option>
-              <option value="biceps">Biceps</option>
-              <option value="calves">Calves</option>
-              <option value="chest">Chest</option>
-              <option value="forearms">Forearms</option>
-              <option value="glutes">Glutes</option>
-              <option value="hamstrings">Hamstrings</option>
-              <option value="lats">Lats</option>
-              <option value="lower_back">Lower Back</option>
-              <option value="middle_back">Middle Back</option>
-              <option value="neck">Neck</option>
-              <option value="quadriceps">Quadriceps</option>
-              <option value="traps">Traps</option>
-              <option value="triceps">Triceps</option>
-            </select>
-          </div>
-          
-          <div class="thePost">
-            <label for="weight">Weight(lbs):</label>
-            <input type="number" class="post" id="weight" name="weight" required>
-          </div> 
-          <div class="thePost">
-            <label for="reps">Reps:</label>
-            <input type="number" class="post" id="reps" name="reps" required>
-          </div> 
-          <div class="thePost">
-            <label for="sets">Sets:</label>
-            <input type="number" class="post" id="sets" name="sets" required>
-          </div> 
-
-          <button type="submit">Submit</button>
-        </form>
+        <h2>My Workouts<br><span>Come Check out the workouts that you have saved!!!</span> </h2>
       </div>
-     <a href="/workouts" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown"> Checkout Workouts</a> </div>
+     <a href="/workouts" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown"> Checkout Workouts</a> 
+     <a href="/feed" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown"> Workout Log</a> </div>
   </div>
 </div>
-<div class="container-fluid fh5co-network">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        
-          <ul class="messages">
-          <% for(var i=0; i<workouts.length; i++) {%>
-            <li class="message">
-              Workout Name:<p><%= workouts[i].workOutName %></p>
-              Muscle:<p><%= workouts[i].bodyPart %></p>
-              <p>Weight(lbs):<span><%= workouts[i].weight %></span></p>
-              <p>Reps:<span><%= workouts[i].reps %></span></p>
-              <p>Sets:<span><%= workouts[i].sets %></span></p>
-              <p>Total Amount of Weight Used:<span><%= workouts[i].weight * workouts[i].reps * workouts[i].sets  %></span><p>
-              <p><span><i class="fa fa-trash" aria-hidden="true"></i></span></p>
-            </li>
-          <% } %>
-          </ul>
 
-          
-        </div>
+
+
+
+
+
+
+
+<% for(let i=0; i <savedWorkouts.length; i++) { %>
+    <div class="container-fluid fh5co-network">
+      <div class="container">
       
-      </div>
-      <div class="col-md-6">
+        <div class="row">
     
+      
+          
+            
+              <form action="/savedWorkout" method="POST">
+              <div class="col-md-6">
+                <h4 class="wow bounceInUp muscle"><%= savedWorkouts[i].muscle.toUpperCase() %></h4>
+                <h2 class="wow bounceInRight workoutName"><%= savedWorkouts[i].name %></h2>
+                <hr />
+                <h5 class="wow bounceInLeft difficulty"><%= savedWorkouts[i].difficulty.toUpperCase() %></h5>
+                <p class="wow bounceInDown instructions"><%= savedWorkouts[i].instructions %></p>
+                <input type="hidden" name="muscle" value="<%= savedWorkouts[i].muscle %>" />
+                <input type="hidden" name="name" value="<%= savedWorkouts[i].name %>" />
+                <input type="hidden" name="difficulty" value="<%= savedWorkouts[i].difficulty %>" />
+                <input type="hidden" name="instructions" value="<%= savedWorkouts[i].instructions %>" />
+                <button type="submit" name="workoutIndex" value="<%= i %>">Delete Workout</button>
+              </div>
+            </form>
+            
+         
+          
+              </div>
+              
+          <div class="col-md-6">
+            
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+      <% } %>
 <div id="about-us" class="container-fluid fh5co-about-us pl-0 pr-0 parallax-window" data-parallax="scroll" data-image-src="images/about-us-bg.jpg">
   <div class="container">
     <div class="col-sm-6 offset-sm-6">
@@ -264,7 +235,7 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/parallax.js"></script>
 <script src="js/wow.js"></script>
-<script src="main.js"></script>
+<script src="..routes/main.js"></script>
 
 </body>
 </html>

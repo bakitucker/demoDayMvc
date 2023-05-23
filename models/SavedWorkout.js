@@ -17,6 +17,10 @@ const SavedWorkoutSchema = new mongoose.Schema({
         type: String,
         
       },
+      email:{
+        type:String,
+        ref: "User",
+      },
       user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
