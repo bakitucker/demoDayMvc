@@ -25,7 +25,7 @@
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container"> 
       <!-- Brand --> 
-      <a class="navbar-brand mr-auto" href="/Profile"><img src="images/logo.png" alt="FoxPro" /></a> 
+      <a class="navbar-brand mr-auto" href="/profile">Let's Get Fit !!</a> 
       
       <!-- Toggler/collapsibe Button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <span class="navbar-toggler-icon"></span> </button>
@@ -36,10 +36,9 @@
           <li class="nav-item"> <a class="nav-link" href="/profile">Home</a> </li>
           <li class="nav-item"> <a class="nav-link" href="/workouts">Workouts</a> </li>
           <li class="nav-item"> <a class="nav-link" href="/myWorkouts">My Workouts</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="/workoutLog">Workout Log</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="/logout">Logout</a> </li>
         </ul>
         <ul class="navbar-nav ml-5">
-          <li class="nav-item"> <a class="nav-link btn btn-danger" href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> </li>
         </ul>
       </div>
     </div>
@@ -48,15 +47,14 @@
     <div class="fh5co-banner-text-box">
       <div class="quote-box pl-5 pr-5 wow bounceInRight">
         <h2>Workout Log<br><span>Record your workouts!</span> </h2>
-        <form action="/post/createWorkout" method="POST">
+        <form  class="changeColor" action="/post/createWorkout" method="POST">
           <div class="thePost">
             <label for="workOutName">Workout Name:</label>
             <input type="text" class="post" id="workOutName" name="workOutName" required>
           </div> 
-          <div class="thePost">
+          <!-- <div class="thePost">
             <label for="bodyPart">Muscle:</label>
-            <select class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown workOutValue" name="workOutValue" onchange="fetchExerciseOptions()" id="bodyPart" name="bodyPart" required>
-              <option value="">Select a muscle</option>
+            <select class="" name="workOutValue" onchange="fetchExerciseOptions()" id="bodyPart" name="bodyPart" required>
               <option value="abdominals">Abdominals</option>
               <option value="abductors">Abductors</option>
               <option value="adductors">Adductors</option>
@@ -74,7 +72,7 @@
               <option value="traps">Traps</option>
               <option value="triceps">Triceps</option>
             </select>
-          </div>
+          </div> -->
           
           <div class="thePost">
             <label for="weight">Weight(lbs):</label>
@@ -95,36 +93,34 @@
      <a href="/workouts" class="btn text-uppercase btn-outline-danger btn-lg mb-3 wow bounceInDown"> Checkout Workouts</a> </div>
   </div>
 </div>
-<div class="container-fluid fh5co-network">
+<div class="">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        
-          <ul class="messages">
-          <% for(var i=0; i<workouts.length; i++) {%>
-            <li class="message">
-              Workout Name:<p><%= workouts[i].workOutName %></p>
-              Muscle:<p><%= workouts[i].bodyPart %></p>
-              <p>Weight(lbs):<span><%= workouts[i].weight %></span></p>
-              <p>Reps:<span><%= workouts[i].reps %></span></p>
-              <p>Sets:<span><%= workouts[i].sets %></span></p>
-              <p>Total Amount of Weight Used:<span><%= workouts[i].weight * workouts[i].reps * workouts[i].sets  %></span><p>
-              <p><span><i class="fa fa-trash" aria-hidden="true" data-id="<%= workouts[i]._id %>"></i></span></p>
-            </li>
-          <% } %>
-          </ul>
+      <div class="col-md-6">  
 
+
+          <% for(var i=0; i<workouts.length; i++) {%>
+          <div class="card border-warning mb-3" style="max-width: 18rem;">
+            <div class="card-body text-warning">
+              <h5 class="card-title"> Workout Name:<p><%= workouts[i].workOutName %></p></h5>
+              <!-- <p class="card-text"> Muscle:<p><%= workouts[i].bodyPart %></p></p> -->
+              <p class="card-text"><p>Weight(lbs):<span><%= workouts[i].weight %></span></p></p>
+              <p class="card-text"> <p>Reps:<span><%= workouts[i].reps %></span></p></p>
+              <p class="card-text"><p>Sets:<span><%= workouts[i].sets %></span></p></p>
+              <p class="card-text"> <p>Total Amount of Weight Used:<span><%= workouts[i].weight * workouts[i].reps * workouts[i].sets  %> lbs</span><p></p>
+              <p class="card-text"><p><span><i class="fa fa-trash" aria-hidden="true" data-id="<%= workouts[i]._id %>"></i></span></p></p>
+            </div>
+          </div>
+          <% } %>
           
         </div>
       
       </div>
-      <div class="col-md-6">
-    
-      </div>
+  
     </div>
   </div>
 </div>
-<div id="about-us" class="container-fluid fh5co-about-us pl-0 pr-0 parallax-window" data-parallax="scroll" data-image-src="images/about-us-bg.jpg">
+<!-- <div id="about-us" class="container-fluid fh5co-about-us pl-0 pr-0 parallax-window" data-parallax="scroll" data-image-src="images/about-us-bg.jpg">
   <div class="container">
     <div class="col-sm-6 offset-sm-6">
       <h2 class="wow bounceInLeft" data-wow-delay=".25s">ABOUT US</h2>
@@ -196,9 +192,9 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <footer class="container-fluid">
-  <div class="container">
+  <!-- <div class="container">
     <div class="row">
       <div class="col-md-3 footer1 d-flex wow bounceInLeft" data-wow-delay=".25s">
         <div class="d-flex flex-wrap align-content-center"> <a href="#"><img src="images/logo.png" alt="logo" /></a>
@@ -254,7 +250,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </footer>
 
 <!-- Optional JavaScript --> 

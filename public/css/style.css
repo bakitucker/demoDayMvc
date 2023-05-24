@@ -131,6 +131,13 @@ a, a:hover {
   text-align: center;
 }
 
+body > div.container-fluid.pl-0.pr-0.bg-img.clearfix.parallax-window2 > div > div > div > form {
+  color: orange;
+}
+
+
+
+
 .fh5co-about-us {
   background: transparent;
   background-repeat: no-repeat;
